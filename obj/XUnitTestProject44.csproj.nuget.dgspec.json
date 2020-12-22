@@ -1,0 +1,101 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\alek8\\source\\repos\\XUnitTestProject3\\XUnitTestProject44.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\alek8\\source\\repos\\XUnitTestProject3\\XUnitTestProject44.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\alek8\\source\\repos\\XUnitTestProject3\\XUnitTestProject44.csproj",
+        "projectName": "XUnitTestProject44",
+        "projectPath": "C:\\Users\\alek8\\source\\repos\\XUnitTestProject3\\XUnitTestProject44.csproj",
+        "packagesPath": "C:\\Users\\alek8\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\alek8\\source\\repos\\XUnitTestProject3\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\alek8\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "targetAlias": "netcoreapp3.0",
+            "projectReferences": {
+              "G:\\AGo\\Go\\new Georgia\\state 1\\IIG\\3\\IIG.PasswordHashingUtils-master\\IIG.PasswordHashingUtils\\IIG.PasswordHashingUtils.csproj": {
+                "projectPath": "G:\\AGo\\Go\\new Georgia\\state 1\\IIG\\3\\IIG.PasswordHashingUtils-master\\IIG.PasswordHashingUtils\\IIG.PasswordHashingUtils.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "targetAlias": "netcoreapp3.0",
+          "dependencies": {
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.2.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.2, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.0, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "G:\\AGo\\Go\\new Georgia\\state 1\\IIG\\3\\IIG.PasswordHashingUtils-master\\IIG.PasswordHashingUtils\\IIG.PasswordHashingUtils.csproj": {
+      "restore": {
+        "projectUniqueName": "G:\\AGo\\Go\\new Georgia\\state 1\\IIG\\3\\IIG.PasswordHashingUtils-master\\IIG.PasswordHashingUtils\\IIG.PasswordHashingUtils.csproj",
+        "projectName": "IIG.PasswordHashingUtils",
+        "projectPath": "G:\\AGo\\Go\\new Georgia\\state 1\\IIG\\3\\IIG.PasswordHashingUtils-master\\IIG.PasswordHashingUtils\\IIG.PasswordHashingUtils.csproj"
+      },
+      "frameworks": {
+        "net461": {}
+      }
+    }
+  }
+}
