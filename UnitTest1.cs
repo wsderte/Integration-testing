@@ -33,28 +33,85 @@ namespace XUnitTestProject3{
         private string dirName = "fileWorkerTest";
 
         [Fact]
-        public void TestFile_Creating_Directory_File_AndInput(){
+        public void TestFile_Creating_Directory_File_AndInputFalse(){
            string mkdirPAth = BaseFileWorker.MkDir(dirName);
            Assert.NotEmpty(mkdirPAth);
            MultipleBinaryFlag Flag = new MultipleBinaryFlag(10);
            Flag.ResetFlag(4);
            BaseFileWorker.Write(Flag.GetFlag().ToString(), mkdirPAth + "\\" + "test.txt");
            Assert.Equal(Flag.GetFlag().ToString(), BaseFileWorker.ReadAll(mkdirPAth + "\\" + "test.txt"));
-
+           
         }
 
-
         [Fact]
-        public void TestFile_TryCopy(){
+        public void TestFile_FlagLength_0(){
             string mkdirPAth = BaseFileWorker.MkDir(dirName);
-            string from = mkdirPAth + "\\" + "test.txt";
-            string to = mkdirPAth + "\\" + "copy.txt";
-            BaseFileWorker.TryCopy(from, to, true);
-            Assert.Equal(BaseFileWorker.ReadAll(from), BaseFileWorker.ReadAll(to));
-
+            MultipleBinaryFlag Flag = new MultipleBinaryFlag(0);
+            BaseFileWorker.Write(Flag.GetFlag().ToString(), mkdirPAth + "\\" + "test.txt");
+            Assert.Equal(Flag.GetFlag().ToString(), BaseFileWorker.ReadAll(mkdirPAth + "\\" + "test.txt"));
         }
 
         [Fact]
+        public void TestFile_FlagLength_1()
+        {
+            string mkdirPAth = BaseFileWorker.MkDir(dirName);
+            MultipleBinaryFlag Flag = new MultipleBinaryFlag(1);
+            BaseFileWorker.Write(Flag.GetFlag().ToString(), mkdirPAth + "\\" + "test.txt");
+            Assert.Equal(Flag.GetFlag().ToString(), BaseFileWorker.ReadAll(mkdirPAth + "\\" + "test.txt"));
+        }
+
+        [Fact]
+        public void TestFile_FlagLength_2()
+        {
+            string mkdirPAth = BaseFileWorker.MkDir(dirName);
+            MultipleBinaryFlag Flag = new MultipleBinaryFlag(2);
+            BaseFileWorker.Write(Flag.GetFlag().ToString(), mkdirPAth + "\\" + "test.txt");
+            Assert.Equal(Flag.GetFlag().ToString(), BaseFileWorker.ReadAll(mkdirPAth + "\\" + "test.txt"));
+        }
+
+
+
+        [Fact]
+        public void TestFile_FlagLength_17179868703()
+        {
+            string mkdirPAth = BaseFileWorker.MkDir(dirName);
+            MultipleBinaryFlag Flag = new MultipleBinaryFlag(17179868703);
+            BaseFileWorker.Write(Flag.GetFlag().ToString(), mkdirPAth + "\\" + "test.txt");
+            Assert.Equal(Flag.GetFlag().ToString(), BaseFileWorker.ReadAll(mkdirPAth + "\\" + "test.txt"));
+        }
+
+        [Fact]
+        public void TestFile_FlagLength_17179868704()
+        {
+            string mkdirPAth = BaseFileWorker.MkDir(dirName);
+            MultipleBinaryFlag Flag = new MultipleBinaryFlag(17179868704);
+            BaseFileWorker.Write(Flag.GetFlag().ToString(), mkdirPAth + "\\" + "test.txt");
+            Assert.Equal(Flag.GetFlag().ToString(), BaseFileWorker.ReadAll(mkdirPAth + "\\" + "test.txt"));
+        }
+
+        [Fact]
+        public void TestFile_FlagLength_17179868705()
+        {
+            string mkdirPAth = BaseFileWorker.MkDir(dirName);
+            MultipleBinaryFlag Flag = new MultipleBinaryFlag(17179868705);
+            BaseFileWorker.Write(Flag.GetFlag().ToString(), mkdirPAth + "\\" + "test.txt");
+            Assert.Equal(Flag.GetFlag().ToString(), BaseFileWorker.ReadAll(mkdirPAth + "\\" + "test.txt"));
+        }
+
+        [Fact]
+        public void TestFile_Output_False()
+        {
+            string mkdirPAth = BaseFileWorker.MkDir(dirName);
+            MultipleBinaryFlag Flag = new MultipleBinaryFlag(22);
+            Flag.ResetFlag(4);
+            BaseFileWorker.Write(Flag.GetFlag().ToString(), mkdirPAth + "\\" + "test.txt");
+            MultipleBinaryFlag FlagFalse = new MultipleBinaryFlag(22, Convert.ToBoolean(BaseFileWorker.ReadAll(mkdirPAth + "\\" + "test.txt")));
+            Assert.False(FlagFalse.GetFlag());
+
+        }
+
+
+          [Fact]
         public void TestDB_AddCredentials(){
             AuthDatabaseUtils authDB = new AuthDatabaseUtils(Server, Database, IsTrusted, Login, Password, ConnectionTimeout);
             // Assert.True(authDB.AddCredentials("wswwwwwww", testPassword));
@@ -90,7 +147,7 @@ namespace XUnitTestProject3{
         }
 
 
-        [Fact]
+       [Fact]
         public void TestDB2_DeleteCredentials_WhichAreNotExist()
         {
             AuthDatabaseUtils authDB = new AuthDatabaseUtils(Server, Database, IsTrusted, Login, Password, ConnectionTimeout);
@@ -98,7 +155,7 @@ namespace XUnitTestProject3{
 
         }
 
-        [Fact]
+       [Fact]
         public void TestDB_AddCredentials_Null()
         {
             AuthDatabaseUtils authDB = new AuthDatabaseUtils(Server, Database, IsTrusted, Login, Password, ConnectionTimeout);
