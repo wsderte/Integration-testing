@@ -14,8 +14,6 @@ using IIG.PasswordHashingUtils;
 namespace XUnitTestProject3{
     public class UnitTest1 {
 
-
-
         private const string Server = @"DESKTOP-4ENV6NA";
         private const string Database = @"IIG.CoSWE.AuthDB";
         private const bool   IsTrusted = true;
@@ -33,38 +31,19 @@ namespace XUnitTestProject3{
         private string dirName = "fileWorkerTest";
 
         [Fact]
-        public void TestFile_Creating_Directory_File_AndInputFalse(){
+        public void TestFile_Creating_Directory_File_AndInput(){
            string mkdirPAth = BaseFileWorker.MkDir(dirName);
            Assert.NotEmpty(mkdirPAth);
            MultipleBinaryFlag Flag = new MultipleBinaryFlag(10);
-           Flag.ResetFlag(4);
            BaseFileWorker.Write(Flag.GetFlag().ToString(), mkdirPAth + "\\" + "test.txt");
            Assert.Equal(Flag.GetFlag().ToString(), BaseFileWorker.ReadAll(mkdirPAth + "\\" + "test.txt"));
            
         }
 
         [Fact]
-        public void TestFile_FlagLength_0(){
+        public void TestFile_Flag_True(){
             string mkdirPAth = BaseFileWorker.MkDir(dirName);
-            MultipleBinaryFlag Flag = new MultipleBinaryFlag(0);
-            BaseFileWorker.Write(Flag.GetFlag().ToString(), mkdirPAth + "\\" + "test.txt");
-            Assert.Equal(Flag.GetFlag().ToString(), BaseFileWorker.ReadAll(mkdirPAth + "\\" + "test.txt"));
-        }
-
-        [Fact]
-        public void TestFile_FlagLength_1()
-        {
-            string mkdirPAth = BaseFileWorker.MkDir(dirName);
-            MultipleBinaryFlag Flag = new MultipleBinaryFlag(1);
-            BaseFileWorker.Write(Flag.GetFlag().ToString(), mkdirPAth + "\\" + "test.txt");
-            Assert.Equal(Flag.GetFlag().ToString(), BaseFileWorker.ReadAll(mkdirPAth + "\\" + "test.txt"));
-        }
-
-        [Fact]
-        public void TestFile_FlagLength_2()
-        {
-            string mkdirPAth = BaseFileWorker.MkDir(dirName);
-            MultipleBinaryFlag Flag = new MultipleBinaryFlag(2);
+            MultipleBinaryFlag Flag = new MultipleBinaryFlag(2, true);
             BaseFileWorker.Write(Flag.GetFlag().ToString(), mkdirPAth + "\\" + "test.txt");
             Assert.Equal(Flag.GetFlag().ToString(), BaseFileWorker.ReadAll(mkdirPAth + "\\" + "test.txt"));
         }
@@ -72,35 +51,16 @@ namespace XUnitTestProject3{
 
 
         [Fact]
-        public void TestFile_FlagLength_17179868703()
-        {
+        public void TestFile_Flag_False(){
             string mkdirPAth = BaseFileWorker.MkDir(dirName);
-            MultipleBinaryFlag Flag = new MultipleBinaryFlag(17179868703);
+            MultipleBinaryFlag Flag = new MultipleBinaryFlag(2, false);
             BaseFileWorker.Write(Flag.GetFlag().ToString(), mkdirPAth + "\\" + "test.txt");
             Assert.Equal(Flag.GetFlag().ToString(), BaseFileWorker.ReadAll(mkdirPAth + "\\" + "test.txt"));
         }
 
-        [Fact]
-        public void TestFile_FlagLength_17179868704()
-        {
-            string mkdirPAth = BaseFileWorker.MkDir(dirName);
-            MultipleBinaryFlag Flag = new MultipleBinaryFlag(17179868704);
-            BaseFileWorker.Write(Flag.GetFlag().ToString(), mkdirPAth + "\\" + "test.txt");
-            Assert.Equal(Flag.GetFlag().ToString(), BaseFileWorker.ReadAll(mkdirPAth + "\\" + "test.txt"));
-        }
 
         [Fact]
-        public void TestFile_FlagLength_17179868705()
-        {
-            string mkdirPAth = BaseFileWorker.MkDir(dirName);
-            MultipleBinaryFlag Flag = new MultipleBinaryFlag(17179868705);
-            BaseFileWorker.Write(Flag.GetFlag().ToString(), mkdirPAth + "\\" + "test.txt");
-            Assert.Equal(Flag.GetFlag().ToString(), BaseFileWorker.ReadAll(mkdirPAth + "\\" + "test.txt"));
-        }
-
-        [Fact]
-        public void TestFile_Output_False()
-        {
+        public void TestFile_ResetFlag () {
             string mkdirPAth = BaseFileWorker.MkDir(dirName);
             MultipleBinaryFlag Flag = new MultipleBinaryFlag(22);
             Flag.ResetFlag(4);
@@ -110,8 +70,43 @@ namespace XUnitTestProject3{
 
         }
 
+        [Fact]
+        public void TestFile_SetFlag() {
+            string mkdirPAth = BaseFileWorker.MkDir(dirName);
+            MultipleBinaryFlag Flag = new MultipleBinaryFlag(22);
+            Flag.SetFlag(4);
+            BaseFileWorker.Write(Flag.GetFlag().ToString(), mkdirPAth + "\\" + "test.txt");
+            MultipleBinaryFlag FlagTr = new MultipleBinaryFlag(22, Convert.ToBoolean(BaseFileWorker.ReadAll(mkdirPAth + "\\" + "test.txt")));
+            Assert.True(FlagTr.GetFlag());
 
-          [Fact]
+        }
+
+        [Fact]
+        public void TestFile_ResetFlag_F()
+        {
+            string mkdirPAth = BaseFileWorker.MkDir(dirName);
+            MultipleBinaryFlag Flag = new MultipleBinaryFlag(22, false);
+            Flag.ResetFlag(4);
+            BaseFileWorker.Write(Flag.GetFlag().ToString(), mkdirPAth + "\\" + "test.txt");
+            MultipleBinaryFlag FlagFalse = new MultipleBinaryFlag(22, Convert.ToBoolean(BaseFileWorker.ReadAll(mkdirPAth + "\\" + "test.txt")));
+            Assert.False(FlagFalse.GetFlag());
+
+        }
+
+        [Fact]
+        public void TestFile_SetFlag_F()
+        {
+            string mkdirPAth = BaseFileWorker.MkDir(dirName);
+            MultipleBinaryFlag Flag = new MultipleBinaryFlag(22, false);
+            Flag.SetFlag(4);
+            BaseFileWorker.Write(Flag.GetFlag().ToString(), mkdirPAth + "\\" + "test.txt");
+            MultipleBinaryFlag FlagTr = new MultipleBinaryFlag(22, Convert.ToBoolean(BaseFileWorker.ReadAll(mkdirPAth + "\\" + "test.txt")));
+            Assert.False (FlagTr.GetFlag());
+
+        }
+
+
+        [Fact]
         public void TestDB_AddCredentials(){
             AuthDatabaseUtils authDB = new AuthDatabaseUtils(Server, Database, IsTrusted, Login, Password, ConnectionTimeout);
             // Assert.True(authDB.AddCredentials("wswwwwwww", testPassword));
@@ -129,8 +124,7 @@ namespace XUnitTestProject3{
         }
 
         [Fact]
-        public void TestDB2_DeleteCredentials()
-        {
+        public void TestDB2_DeleteCredentials() {
             AuthDatabaseUtils authDB = new AuthDatabaseUtils(Server, Database, IsTrusted, Login, Password, ConnectionTimeout);
             authDB.DeleteCredentials(updateLogin, updatePassword);
             Assert.False(authDB.CheckCredentials(updateLogin, updatePassword));
@@ -138,8 +132,7 @@ namespace XUnitTestProject3{
         }
 
         [Fact]
-        public void TestDB2_UpdateCredentials_WhichAreNotExist()
-        {
+        public void TestDB2_UpdateCredentials_WhichAreNotExist()  {
             AuthDatabaseUtils authDB = new AuthDatabaseUtils(Server, Database, IsTrusted, Login, Password, ConnectionTimeout);
             Assert.False(authDB.UpdateCredentials("neverExist", "nnn", updateLogin, updatePassword));
             
@@ -148,16 +141,14 @@ namespace XUnitTestProject3{
 
 
        [Fact]
-        public void TestDB2_DeleteCredentials_WhichAreNotExist()
-        {
+        public void TestDB2_DeleteCredentials_WhichAreNotExist()  {
             AuthDatabaseUtils authDB = new AuthDatabaseUtils(Server, Database, IsTrusted, Login, Password, ConnectionTimeout);
             Assert.True(authDB.DeleteCredentials("neverExist", "nnn"));
 
         }
 
        [Fact]
-        public void TestDB_AddCredentials_Null()
-        {
+        public void TestDB_AddCredentials_Null() {
             AuthDatabaseUtils authDB = new AuthDatabaseUtils(Server, Database, IsTrusted, Login, Password, ConnectionTimeout);
             // Assert.True(authDB.AddCredentials("wswwwwwww", testPassword));
             authDB.AddCredentials(null, null);
@@ -166,8 +157,7 @@ namespace XUnitTestProject3{
         }
 
         [Fact]
-        public void TestDB_AddCredentials_Empty()
-        {
+        public void TestDB_AddCredentials_Empty() {
             AuthDatabaseUtils authDB = new AuthDatabaseUtils(Server, Database, IsTrusted, Login, Password, ConnectionTimeout);
             // Assert.True(authDB.AddCredentials("wswwwwwww", testPassword));
             authDB.AddCredentials("", "");
